@@ -1,19 +1,18 @@
-
-from pyrogram import Client, filters
-from handlers import start, help, stock_query
-
-# Load environment variables
+from pyrogram import Client
 import config
+import handlers.start  # Import start handler to ensure it registers
+import handlers.help  # Import help handler
+import handlers.stock_query  # Import stock query handler
 
-# Initialize bot
-app = Client("stock_bot", bot_token=config.BOT_TOKEN)
+# Initialize the bot
+app = Client(
+    "stock_bot",
+    bot_token=config.BOT_TOKEN,
+    api_id=config.API_ID,
+    api_hash=config.API_HASH,
+)
 
-# Register handlers
-app.add_handler(start.handler)
-app.add_handler(help.handler)
-app.add_handler(stock_query.handler)
-
-# Run bot
+# Start the bot
 if __name__ == "__main__":
     print("Bot is running...")
     app.run()
