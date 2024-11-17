@@ -9,4 +9,4 @@ API_HASH = environ['API_HASH']
 BOT_TOKEN = environ['BOT_TOKEN']
 MONGO_URI = environ.get('MONGO_URI', "")
 STOCK_API_KEY = environ.get('STOCK_API_KEY', "")
-PORT = int(environ['PORT'])
+PORT = environ.get("PORT", "8080")
