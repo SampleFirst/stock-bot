@@ -1,10 +1,6 @@
 from pyrogram import Client
 import config
-import handlers.start  # Import start handler to ensure it registers
-import handlers.help  # Import help handler
-import handlers.stock_query  # Import stock query handler
 
-# Initialize the bot
 app = Client(
     "stock_bot",
     bot_token=config.BOT_TOKEN,
@@ -12,7 +8,6 @@ app = Client(
     api_hash=config.API_HASH,
 )
 
-# Start the bot
 if __name__ == "__main__":
     print("Bot is running...")
     app.run()
