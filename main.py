@@ -1,4 +1,5 @@
 from pyrogram import Client
+from handlers import web_server
 import config
 
 class StockBot(Client):
@@ -14,6 +15,10 @@ class StockBot(Client):
     async def start(self):
         await super().start()
         me = await self.get_me()
+        app = web.AppRunner(await web_server())
+        await app.setup()
+        bind_address = "0.0.0.0"
+        await web.TCPSite(app, bind_address, config.PORT).start()
         print(f"Bot {me.username} is running...")
 
     async def stop(self, *args):
