@@ -1,11 +1,11 @@
 
 from dotenv import load_dotenv
-import os
+from os import environ
 
 load_dotenv()
 
-BOT_TOKEN = os.getenv("7417084160:AAEgqGZxQBkCJKETr1KUMfsYVAr2gfcRYAs")
-STOCK_API_KEY = os.getenv("cssq4d1r01qld5m1h8fgcssq4d1r01qld5m1h8g0")
-MONGO_URI = os.getenv("mongodb+srv://Rename:Rename@cluster0.m3eacgp.mongodb.net/?retryWrites=true&w=majority")
-API_HASH = os.getenv("cceefd3382b44d4d85be2d83201102b7")
-API_ID = os.getenv("10956858")
+API_ID = int(environ['API_ID'])
+API_HASH = environ['API_HASH']
+BOT_TOKEN = environ['BOT_TOKEN']
+MONGO_URI = environ.get('MONGO_URI', "")
+STOCK_API_KEY = environ.get('STOCK_API_KEY', "")
