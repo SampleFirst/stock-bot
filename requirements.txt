@@ -1,6 +1,6 @@
 
-pyrogram
+pyrofork
+tgcrypto
 python-dotenv
 pymongo
 requests
-tgcrypto
