@@ -1,5 +1,6 @@
 from pyrogram import Client
-from handlers import web_server
+from aiohttp import web
+from handlers.web_server import create_web_server
 import config
 
 class StockBot(Client):
@@ -15,15 +16,20 @@ class StockBot(Client):
     async def start(self):
         await super().start()
         me = await self.get_me()
-        app = web.AppRunner(await web_server())
-        await app.setup()
-        bind_address = "0.0.0.0"
-        await web.TCPSite(app, bind_address, config.PORT).start()
         print(f"Bot {me.username} is running...")
 
+        # Start the web server
+        web_app = create_web_server()
+        runner = web.AppRunner(web_app)
+        await runner.setup()
+        bind_address = "0.0.0.0"
+        site = web.TCPSite(runner, bind_address, config.PORT)
+        await site.start()
+        print(f"Web server running on {bind_address}:{config.PORT}")
+
     async def stop(self, *args):
-        await super().stop()
         print("Bot is stopping...")
+        await super().stop()
 
 # Run the bot
 if __name__ == "__main__":
