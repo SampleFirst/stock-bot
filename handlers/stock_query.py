@@ -2,7 +2,7 @@ from pyrogram import Client, filters
 from utils.stock_api import get_stock_report
 from utils.db import save_query
 
-@Client.on_message(filters.text & filters.private & ~filters.command(["start", "help"]))
+@Client.on_message(filters.text & filters.private)
 async def stock_query(client, message):
     query = message.text.strip()
     if not query:
